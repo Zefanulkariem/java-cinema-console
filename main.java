@@ -1,16 +1,17 @@
 package lab.tubes;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        String judul = "";
-        String genre = "";
-        int durasi = 0;
-        double rating = 0;
-        String sipnosis = "";
+        ArrayList<String> judulList = new ArrayList<>();                     //add: ArrayList
+        ArrayList<String> genreList = new ArrayList<>();
+        ArrayList<Integer> durasiList = new ArrayList<>();
+        ArrayList<Double> ratingList = new ArrayList<>();
+        ArrayList<String> sipnosisList = new ArrayList<>();
         // String jadwalTayang;
 
         int loginUser;
@@ -40,6 +41,7 @@ public class main {
                         System.out.println("Selamat Datang Admin!");
 
                         do{
+                            System.out.println("");
                             System.out.println("========MENU========");
                             System.out.println("1. Input Film");
                             System.out.println("2. Lihat Film");
@@ -51,33 +53,43 @@ public class main {
                             
                             if(menu == 1){
                                 System.out.print("Judul: ");
-                                judul = in.nextLine();
+                                String judul = in.nextLine();
 
                                 System.out.print("Genre: ");
-                                genre = in.nextLine();
+                                String genre = in.nextLine();
                                 
                                 System.out.print("Durasi (menit): ");
-                                durasi = in.nextInt();
+                                int durasi = in.nextInt();
                                 
                                 System.out.print("Rating: ");
-                                rating = in.nextDouble();
+                                double rating = in.nextDouble();
                                 in.nextLine();
 
                                 System.out.println("Sipnosis");
-                                sipnosis = in.nextLine();
+                                String sipnosis = in.nextLine();
 
                                 System.out.println("Film disimpan!");
+
+                                judulList.add(judul);                         //add: arrayList
+                                genreList.add(genre);
+                                durasiList.add(durasi);
+                                ratingList.add(rating);
+                                sipnosisList.add(sipnosis);
+                                
                             } else if (menu == 2) {
                                 // if(film == null){}
-                                if(judul.equals("")){
+                                if(judulList.isEmpty()){                       //add: isEmpty
                                     System.out.println("Tidak ada data.");
-                                } else {
+                                } else {                                                     //ganti ke for
                                     System.out.println("========DAFTAR FILM========");
-                                    System.out.println("Judul: " + judul);
-                                    System.out.println("Genre: " + genre);
-                                    System.out.println("Durasi: " + durasi);
-                                    System.out.println("Rating: " + rating);
-                                    System.out.println("Sipnosis: " + sipnosis);
+                                    for(int i = 0; i < judulList.size(); i++){
+                                        System.out.println("\n " + (i + 1) + ".");
+                                        System.out.println("Judul: " + judulList.get(i));                   //add: get List (tunda)
+                                        System.out.println("Genre: " + genreList.get(i));
+                                        System.out.println("Durasi: " + durasiList.get(i));
+                                        System.out.println("Rating: " + ratingList.get(i));
+                                        System.out.println("Sipnosis: " + sipnosisList.get(i));
+                                    }
                                 }
                             } else if (menu != 3){
                                 System.out.println("Harap isi dengan benar!");
@@ -94,30 +106,36 @@ public class main {
                     System.out.println("Password salah, Maaf coba ulang lain kali");
                 }
             } else if (loginUser == 2) {
-                System.out.println("Selamat Datang!");
-                System.out.println("========MENU========");
-                System.out.println("1. Lihat Film");
-                System.out.println("2. Keluar");
-                System.out.println("Pilih Menu: ");
-                
-                menu = in.nextInt();
-                in.nextLine();
-                
-                if (menu == 1) {
-                    // if(film == null){}
-                    if(judul.equals("")){
-                        System.out.println("Tidak ada data.");
-                    } else {
-                        System.out.println("========DAFTAR FILM========");
-                        System.out.println("Judul: " + judul);
-                        System.out.println("Genre: " + genre);
-                        System.out.println("Durasi: " + durasi);
-                        System.out.println("Rating: " + rating);
-                        System.out.println("Sipnosis: " + sipnosis);
+                do{
+                    System.out.println("");
+                    System.out.println("Selamat Datang!");
+                    System.out.println("========MENU========");
+                    System.out.println("1. Lihat Film");
+                    System.out.println("2. Keluar");
+                    System.out.println("Pilih Menu: ");
+                    
+                    menu = in.nextInt();
+                    in.nextLine();
+                    
+                    if (menu == 1) {
+                        // if(film == null){}
+                        if(judulList.isEmpty()){
+                            System.out.println("Tidak ada data.");
+                        } else {
+                            System.out.println("========DAFTAR FILM========");
+                            for(int i = 0; i < judulList.size(); i++){
+                                System.out.print("\n " + (i + 1) + ". ");                   //add: get List (tunda)
+                                System.out.println("Judul: " + judulList.get(i));                   //add: get List (tunda)
+                                System.out.println("Genre: " + genreList.get(i));
+                                System.out.println("Durasi: " + durasiList.get(i));
+                                System.out.println("Rating: " + ratingList.get(i));
+                                System.out.println("Sipnosis: " + sipnosisList.get(i));
+                            }
+                        }
+                    } else if (menu != 2){
+                        System.out.println("Harap isi dengan benar!");
                     }
-                } else if (menu != 2){
-                    System.out.println("Harap isi dengan benar!");
-                } 
+                }while(menu != 2);
             } else if (loginUser != 3) {
                 System.out.println("Harap isi dengan pilihan yang tertera!");
             }
