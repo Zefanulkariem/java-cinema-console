@@ -1,5 +1,7 @@
 package lab.tubes;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,12 +9,8 @@ public class main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        ArrayList<String> judulList = new ArrayList<>();                     //add: ArrayList
-        ArrayList<String> genreList = new ArrayList<>();
-        ArrayList<Integer> durasiList = new ArrayList<>();
-        ArrayList<Double> ratingList = new ArrayList<>();
-        ArrayList<String> sipnosisList = new ArrayList<>();
-        // String jadwalTayang;
+        ArrayList<Film> Film = new ArrayList<>();
+        
 
         int loginUser;
         int menu;
@@ -62,33 +60,28 @@ public class main {
                                 int durasi = in.nextInt();
                                 
                                 System.out.print("Rating: ");
-                                double rating = in.nextDouble();
+                                BigDecimal rating = in.nextBigDecimal();
                                 in.nextLine();
 
                                 System.out.println("Sipnosis");
                                 String sipnosis = in.nextLine();
 
+                                Film dataFilm = new Film(judul, genre, durasi, rating, sipnosis);
+
                                 System.out.println("Film disimpan!");
 
-                                judulList.add(judul);                         //add: arrayList
-                                genreList.add(genre);
-                                durasiList.add(durasi);
-                                ratingList.add(rating);
-                                sipnosisList.add(sipnosis);
+                                Film.add(dataFilm);                      //add: arrayList
                                 
                             } else if (menu == 2) {
                                 // if(film == null){}
-                                if(judulList.isEmpty()){                       //add: isEmpty
+                                if(Film.isEmpty()){                       //add: isEmpty
                                     System.out.println("Tidak ada data.");
                                 } else {                                                     //ganti ke for
                                     System.out.println("========DAFTAR FILM========");
-                                    for(int i = 0; i < judulList.size(); i++){
+                                    for(int i = 0; i < Film.size(); i++){
                                         System.out.println("\n " + (i + 1) + ".");
-                                        System.out.println("Judul: " + judulList.get(i));                   //add: get List (tunda)
-                                        System.out.println("Genre: " + genreList.get(i));
-                                        System.out.println("Durasi: " + durasiList.get(i));
-                                        System.out.println("Rating: " + ratingList.get(i));
-                                        System.out.println("Sipnosis: " + sipnosisList.get(i));
+                                        Film.get(i).tampilInfo();
+                                        System.out.println("");
                                     }
                                 }
                             } else if (menu != 3){
@@ -119,17 +112,13 @@ public class main {
                     
                     if (menu == 1) {
                         // if(film == null){}
-                        if(judulList.isEmpty()){
+                        if(Film.isEmpty()){
                             System.out.println("Tidak ada data.");
                         } else {
                             System.out.println("========DAFTAR FILM========");
-                            for(int i = 0; i < judulList.size(); i++){
+                            for(int i = 0; i < Film.size(); i++){
                                 System.out.print("\n " + (i + 1) + ". ");                   //add: get List (tunda)
-                                System.out.println("Judul: " + judulList.get(i));                   //add: get List (tunda)
-                                System.out.println("Genre: " + genreList.get(i));
-                                System.out.println("Durasi: " + durasiList.get(i));
-                                System.out.println("Rating: " + ratingList.get(i));
-                                System.out.println("Sipnosis: " + sipnosisList.get(i));
+                                Film.get(i).tampilInfo();
                             }
                         }
                     } else if (menu != 2){
