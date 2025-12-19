@@ -12,19 +12,6 @@ public class Film {
     
     // int harga;
 
-    public Film(String judul, String genre, int durasi, double rating, String sipnosis){
-        this.judul = judul;
-        this.genre = genre;
-        this.durasi = durasi;
-        this.rating = rating;
-        this.sipnosis = sipnosis;
-        this.jadwalList = new ArrayList<>();
-    }
-
-    public void tambahJadwal(Jadwal jadwal){
-        this.jadwalList.add(jadwal);              //anggap untuk add daripada variable jadwal main
-    }
-
     public void tampilInfo(){
         System.out.println("Judul: " + judul);
         System.out.println("Genre: " + genre);

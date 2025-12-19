@@ -5,12 +5,6 @@ public class Jadwal {
     String jam;
     String studio;
 
-    public Jadwal(String hari, String jam, String studio){
-        this.hari = hari;
-        this.jam = jam;
-        this.studio = studio;
-    }
-
     public void tampilInfo(){
         System.out.println("Hari: " + hari);
         System.out.println("Jam: " + jam);

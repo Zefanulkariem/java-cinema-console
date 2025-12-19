@@ -49,46 +49,49 @@ public class main {
                             in.nextLine();
                             
                             if(menu == 1){
+                                Film dataFilm = new Film();
+
                                 System.out.print("Judul: ");
-                                String judul = in.nextLine();
+                                dataFilm.judul = in.nextLine();
 
                                 System.out.print("Genre: ");
-                                String genre = in.nextLine();
+                                dataFilm.genre = in.nextLine();
                                 
                                 System.out.print("Durasi (menit): ");
-                                int durasi = in.nextInt();
+                                dataFilm.durasi = in.nextInt();
                                 
                                 System.out.print("Rating: ");
                                 double rating = in.nextDouble();
                                 in.nextLine();
 
                                 System.out.println("Sipnosis");
-                                String sipnosis = in.nextLine();
+                                dataFilm.sipnosis = in.nextLine();
 
-                                Film dataFilm = new Film(judul, genre, durasi, rating, sipnosis);
+                                dataFilm.jadwalList = new ArrayList<>();
 
                                 do{
                                     System.out.println("===INPUT JADWAL FILM===");
+
+                                    Jadwal dataJadwal = new Jadwal();
+
                                     System.out.println("Hari: ");
-                                    String hari = in.nextLine();
+                                    dataJadwal.hari = in.nextLine();
 
                                     System.out.println("Jam: ");
-                                    String jam = in.nextLine();
+                                    dataJadwal.jam = in.nextLine();
                                     
                                     System.out.println("Studio: ");
-                                    String studio = in.nextLine();
+                                    dataJadwal.studio = in.nextLine();
                                     
                                     System.out.println("Isi jadwal lagi? (y/n): ");
                                     lanjut = in.nextLine();
 
-                                    Jadwal dataJadwal = new Jadwal(hari, jam, studio);
+                                    dataFilm.jadwalList.add(dataJadwal);
 
-                                    dataFilm.tambahJadwal(dataJadwal);
+                                } while(lanjut.equalsIgnoreCase("y"));
 
-                                }while(lanjut.equalsIgnoreCase("y"));
-
-                                System.out.println("Film disimpan!");
                                 filmList.add(dataFilm);                      //add: arrayList
+                                System.out.println("Film disimpan!");
                                 
                             } else if (menu == 2) {
                                 // if(film == null){}
