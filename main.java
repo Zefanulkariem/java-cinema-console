@@ -1,7 +1,5 @@
 package lab.tubes;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,11 +7,11 @@ public class main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        ArrayList<Film> Film = new ArrayList<>();
-        
+        ArrayList<Film> filmList = new ArrayList<>();
 
         int loginUser;
         int menu;
+        String lanjut;
 
         do {
             System.out.println("========MASUK========");
@@ -36,8 +34,9 @@ public class main {
                     
                     if(pin.equals(PIN_BENAR)){
                         login = true;
+                        System.out.println("");
                         System.out.println("Selamat Datang Admin!");
-
+                        
                         do{
                             System.out.println("");
                             System.out.println("========MENU========");
@@ -60,7 +59,7 @@ public class main {
                                 int durasi = in.nextInt();
                                 
                                 System.out.print("Rating: ");
-                                BigDecimal rating = in.nextBigDecimal();
+                                double rating = in.nextDouble();
                                 in.nextLine();
 
                                 System.out.println("Sipnosis");
@@ -68,20 +67,39 @@ public class main {
 
                                 Film dataFilm = new Film(judul, genre, durasi, rating, sipnosis);
 
-                                System.out.println("Film disimpan!");
+                                do{
+                                    System.out.println("===INPUT JADWAL FILM===");
+                                    System.out.println("Hari: ");
+                                    String hari = in.nextLine();
 
-                                Film.add(dataFilm);                      //add: arrayList
+                                    System.out.println("Jam: ");
+                                    String jam = in.nextLine();
+                                    
+                                    System.out.println("Studio: ");
+                                    String studio = in.nextLine();
+                                    
+                                    System.out.println("Isi jadwal lagi? (y/n): ");
+                                    lanjut = in.nextLine();
+
+                                    Jadwal dataJadwal = new Jadwal(hari, jam, studio);
+
+                                    dataFilm.tambahJadwal(dataJadwal);
+
+                                }while(lanjut.equalsIgnoreCase("y"));
+
+                                System.out.println("Film disimpan!");
+                                filmList.add(dataFilm);                      //add: arrayList
                                 
                             } else if (menu == 2) {
                                 // if(film == null){}
-                                if(Film.isEmpty()){                       //add: isEmpty
+                                if(filmList.isEmpty()){                       //add: isEmpty
                                     System.out.println("Tidak ada data.");
                                 } else {                                                     //ganti ke for
                                     System.out.println("========DAFTAR FILM========");
-                                    for(int i = 0; i < Film.size(); i++){
-                                        System.out.println("\n " + (i + 1) + ".");
-                                        Film.get(i).tampilInfo();
-                                        System.out.println("");
+                                    for(int i = 0; i < filmList.size(); i++){
+                                        System.out.println("\n Film ke-" + (i + 1) + ".");
+                                        filmList.get(i).tampilInfo();
+                                        System.out.println("-----------------------------");
                                     }
                                 }
                             } else if (menu != 3){
@@ -112,13 +130,14 @@ public class main {
                     
                     if (menu == 1) {
                         // if(film == null){}
-                        if(Film.isEmpty()){
+                        if(filmList.isEmpty()){
                             System.out.println("Tidak ada data.");
                         } else {
-                            System.out.println("========DAFTAR FILM========");
-                            for(int i = 0; i < Film.size(); i++){
-                                System.out.print("\n " + (i + 1) + ". ");                   //add: get List (tunda)
-                                Film.get(i).tampilInfo();
+                            System.out.println("=========DAFTAR FILM=========");
+                            for(int i = 0; i < filmList.size(); i++){
+                                System.out.println("\n Film ke-" + (i + 1) + ".");
+                                filmList.get(i).tampilInfo();
+                                System.out.println("---------------------------");
                             }
                         }
                     } else if (menu != 2){
