@@ -11,7 +11,6 @@ public class TampilMenu {
         String lanjut;
 
         do{
-            
             System.out.println("");
             System.out.println("========MENU========");
             System.out.println("1. Input Film");
@@ -56,6 +55,8 @@ public class TampilMenu {
                     
                     System.out.println("Studio: ");
                     dataJadwal.studio = in.nextLine();
+
+                    //harga sesuai hari.....
                     
                     System.out.println("Isi jadwal lagi? (y/n): ");
                     lanjut = in.nextLine();
@@ -68,7 +69,6 @@ public class TampilMenu {
                 System.out.println("Film disimpan!");
                 
             } else if (menu == 2) {
-                // if(film == null){}
                 if(filmList.isEmpty()){                       //add: isEmpty
                     System.out.println("Tidak ada data.");
                 } else {                                                     //ganti ke for
@@ -79,7 +79,7 @@ public class TampilMenu {
                         System.out.println("-----------------------------");
                     }
                 }
-            } else if (menu != 3){
+            } else if (menu != 3){ 
                 System.out.println("Harap isi dengan benar!");
             }
         } while(menu != 3);
@@ -94,7 +94,8 @@ public class TampilMenu {
             System.out.println("Selamat Datang!");
             System.out.println("========MENU========");
             System.out.println("1. Lihat Film");
-            System.out.println("2. Keluar");
+            System.out.println("2. Cari Film");
+            System.out.println("3. Keluar");
             System.out.println("Pilih Menu: ");
             
             menu = in.nextInt();
@@ -112,9 +113,30 @@ public class TampilMenu {
                         System.out.println("---------------------------");
                     }
                 }
-            } else if (menu != 2){
+            } else if (menu == 2) {
+                if (filmList.isEmpty()) {
+                    System.out.println("Belum ada data film untuk dicari.");
+                } else {
+                    System.out.print("Masukkan judul film yang dicari: ");
+                    String keyword = in.nextLine();
+                    
+                    ArrayList<Film> hasil = SearchFilm.cariFilm(filmList, keyword);
+                    
+                    if (hasil.isEmpty()) {
+                        System.out.println("Film dengan judul '" + keyword + "' tidak ditemukan.");
+                    } else {
+                        System.out.println("\nDitemukan " + hasil.size() + " film:");
+                        System.out.println("========HASIL PENCARIAN========");
+                        for (int i = 0; i < hasil.size(); i++) {
+                            System.out.println("\nFilm ke-" + (i + 1) + ".");
+                            hasil.get(i).tampilInfo();
+                            System.out.println("---------------------------");
+                        }
+                    }
+                }
+            } else if (menu != 3){
                 System.out.println("Harap isi dengan benar!");
             }
-        }while(menu != 2);
+        }while(menu != 3);
     }
 }

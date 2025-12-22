@@ -7,7 +7,7 @@ public class main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        ArrayList<Film> filmList = new ArrayList<>();
+        ArrayList<Film> filmList = new ArrayList<>();  //array index/panjangnya ga ditentuin
 
         int loginUser;
 

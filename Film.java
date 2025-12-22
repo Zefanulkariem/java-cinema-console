@@ -9,8 +9,6 @@ public class Film {
     double rating;
     String sipnosis;
     ArrayList<Jadwal> jadwalList;
-    
-    // int harga;
 
     public void tampilInfo(){
         System.out.println("Judul: " + judul);
