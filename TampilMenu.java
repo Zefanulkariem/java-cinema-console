@@ -16,7 +16,7 @@ public class TampilMenu {
             System.out.println("1. Input Film");
             System.out.println("2. Lihat Film");
             System.out.println("3. Keluar");
-            System.out.println("Pilih Menu: ");
+            System.out.print("Pilih Menu: ");
             
             menu = in.nextInt();
             in.nextLine();
@@ -34,7 +34,7 @@ public class TampilMenu {
                 dataFilm.durasi = in.nextInt();
                 
                 System.out.print("Rating: ");
-                double rating = in.nextDouble();
+                dataFilm.rating = in.nextDouble();
                 in.nextLine();
 
                 System.out.println("Sipnosis");
@@ -47,18 +47,34 @@ public class TampilMenu {
 
                     Jadwal dataJadwal = new Jadwal();
 
-                    System.out.println("Hari: ");
-                    dataJadwal.hari = in.nextLine();
+                    System.out.print("Tanggal (DD-MM-YYYY): ");
+                    dataJadwal.tanggal = in.nextLine();
 
-                    System.out.println("Jam: ");
+                    boolean cek = true;
+                    while (cek) {
+                        System.out.print("Hari: ");
+                        dataJadwal.hari = in.nextLine().toLowerCase();
+
+                        if (dataJadwal.hari.equals("senin") || dataJadwal.hari.equals("selasa") 
+                            || dataJadwal.hari.equals("rabu") || dataJadwal.hari.equals("kamis") 
+                            || dataJadwal.hari.equals("jumat")) {
+                            dataJadwal.harga = "40.000"; 
+                            cek = false;
+                        }else if (dataJadwal.hari.equals("sabtu") || dataJadwal.hari.equals("minggu")) {
+                            dataJadwal.harga = "60.000";
+                            cek = false;
+                        }else{
+                            System.out.println("Masukan hari yang benar");
+                        }
+                    }
+
+                    System.out.print("Jam (HH:MM): ");
                     dataJadwal.jam = in.nextLine();
                     
-                    System.out.println("Studio: ");
+                    System.out.print("Studio: ");
                     dataJadwal.studio = in.nextLine();
-
-                    //harga sesuai hari.....
                     
-                    System.out.println("Isi jadwal lagi? (y/n): ");
+                    System.out.print("Isi jadwal lagi? (y/n): ");
                     lanjut = in.nextLine();
 
                     dataFilm.jadwalList.add(dataJadwal);
@@ -96,7 +112,7 @@ public class TampilMenu {
             System.out.println("1. Lihat Film");
             System.out.println("2. Cari Film");
             System.out.println("3. Keluar");
-            System.out.println("Pilih Menu: ");
+            System.out.print("Pilih Menu: ");
             
             menu = in.nextInt();
             in.nextLine();

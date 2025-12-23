@@ -17,7 +17,7 @@ public class main {
             System.out.println("1. Akun Admin");
             System.out.println("2. Akun Guest");
             System.out.println("3. Keluar");
-            System.out.println("Masuk Sebagai: ");
+            System.out.print("Masuk Sebagai: ");
             
             loginUser = in.nextInt();
             in.nextLine();
@@ -36,7 +36,7 @@ public class main {
                         System.out.println("");
                         System.out.println("Selamat Datang Admin!");
                         
-                        TampilMenu.tampilInfoAdmin(filmList, in);       //function menu
+                        TampilMenu.tampilInfoAdmin(filmList, in);       //function menu admin
                         break;
                     } else {
                         percobaan++;
@@ -48,7 +48,7 @@ public class main {
                     System.out.println("Password salah, Maaf coba ulang lain kali");
                 }
             } else if (loginUser == 2) {
-                TampilMenu.tampilInfoUser(filmList, in);       //function menu
+                TampilMenu.tampilInfoUser(filmList, in);       //function menu user
             } else if (loginUser != 3) {
                 System.out.println("Harap isi dengan pilihan yang tertera!");
             }
