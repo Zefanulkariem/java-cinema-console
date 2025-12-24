@@ -111,7 +111,8 @@ public class TampilMenu {
             System.out.println("========MENU========");
             System.out.println("1. Lihat Film");
             System.out.println("2. Cari Film");
-            System.out.println("3. Keluar");
+            System.out.println("3. Filter Film");
+            System.out.println("4. Keluar");
             System.out.print("Pilih Menu: ");
             
             menu = in.nextInt();
@@ -134,12 +135,12 @@ public class TampilMenu {
                     System.out.println("Belum ada data film untuk dicari.");
                 } else {
                     System.out.print("Masukkan judul film yang dicari: ");
-                    String keyword = in.nextLine();
+                    String kataKunci = in.nextLine();
                     
-                    ArrayList<Film> hasil = SearchFilm.cariFilm(filmList, keyword);
+                    ArrayList<Film> hasil = SearchFilm.cariFilm(filmList, kataKunci);
                     
                     if (hasil.isEmpty()) {
-                        System.out.println("Film dengan judul '" + keyword + "' tidak ditemukan.");
+                        System.out.println("Film dengan judul '" + kataKunci + "' tidak ditemukan.");
                     } else {
                         System.out.println("\nDitemukan " + hasil.size() + " film:");
                         System.out.println("========HASIL PENCARIAN========");
@@ -150,9 +151,50 @@ public class TampilMenu {
                         }
                     }
                 }
-            } else if (menu != 3){
+            } else if (menu == 3) {
+                if (filmList.isEmpty()) {
+                    System.out.println("Belum ada data film untuk difilter.");
+                } else {
+                    System.out.println("\n========FILTER FILM========");
+                    System.out.println("1. Filter berdasarkan Tanggal dan Genre");
+                    System.out.println("2. Kembali");
+                    System.out.print("Pilih filter: ");
+                    
+                    int pilihFilter = in.nextInt();
+                    in.nextLine();
+                    
+                    if (pilihFilter == 1) {
+
+                        System.out.print("Masukkan tanggal (DD-MM-YYYY): ");
+                        String tanggal = in.nextLine();
+                        
+                        System.out.print("Masukkan genre: ");
+                        String genre = in.nextLine();
+                        
+                        ArrayList<Film> hasil = FilterFilm.filterByTanggalDanGenre(filmList, tanggal, genre);
+                        
+                        if (hasil.isEmpty()) {
+                            System.out.println("Tidak ada film genre " + genre + " yang tayang pada " + tanggal);
+                        } else {
+                            System.out.println("\nFilm genre " + genre + " yang tayang pada " + tanggal + ":");
+                            System.out.println("========HASIL FILTER========");
+                            for (int i = 0; i < hasil.size(); i++) {
+                                System.out.println("\nFilm ke-" + (i + 1) + ".");
+                                hasil.get(i).tampilInfo();
+                                System.out.println("---------------------------");
+                            }
+                        }
+                        
+                    } else if (pilihFilter == 2) {
+                        System.out.println("Kembali ke menu utama...");
+                    } else {
+                        System.out.println("Pilihan tidak valid!");
+                    }
+                }
+                
+            } else if (menu != 4){
                 System.out.println("Harap isi dengan benar!");
             }
-        }while(menu != 3);
+        }while(menu != 4);
     }
 }
