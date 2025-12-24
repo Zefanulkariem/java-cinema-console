@@ -8,10 +8,10 @@ public class Jadwal {
     String harga;
 
     public void tampilInfo(){
-        System.out.println("Tanggal: " + tanggal);
-        System.out.println("Hari: " + hari);
-        System.out.println("Jam: " + jam);
-        System.out.println("Studio: " + studio);
-        System.out.println("Harga: " + harga);
+        System.out.println("║ Tanggal: " + tanggal);
+        System.out.println("║ Hari: " + hari);
+        System.out.println("║ Jam: " + jam);
+        System.out.println("║ Studio: " + studio);
+        System.out.println("║ Harga: " + harga);
     }
 }
