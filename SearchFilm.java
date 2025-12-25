@@ -20,6 +20,7 @@ public class SearchFilm {
                 judulKecil = judulKecil + huruf;
             }
 
+            //judul yg di input
             String keywordKecil = "";
             for (int j = 0; j < keyword.length(); j++) {
                 char huruf = keyword.charAt(j);
@@ -29,7 +30,7 @@ public class SearchFilm {
                 keywordKecil = keywordKecil + huruf;
             }
 
-            boolean ketemu = false;
+            boolean ketemu = false; //default
 
             if (keywordKecil.length() <= judulKecil.length()) {
                 

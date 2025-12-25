@@ -14,11 +14,11 @@ public class FilterFilm {
             if (huruf >= 'A' && huruf <= 'Z') {
                 huruf = (char)(huruf + 32);
             }
-            genreKecil = genreKecil + huruf;           //ngubah upper ke lower
+            genreKecil = genreKecil + huruf;           //ngubah upper ke lower (inputan)
         }
         
 
-        for (int i = 0; i < filmList.size(); i++) {          //program bandingkan
+        for (int i = 0; i < filmList.size(); i++) {          // (data film)
             Film film = filmList.get(i);
             
             String filmGenreKecil = "";
@@ -31,9 +31,9 @@ public class FilterFilm {
             }
             
             
-            boolean genreCocok = filmGenreKecil.equals(genreKecil);
+            boolean genreCocok = filmGenreKecil.equals(genreKecil); //banding
             
-            // Cek apakah ada jadwal dengan tanggal yang cocok
+
             boolean tanggalCocok = false;
             for (int j = 0; j < film.jadwalList.size(); j++) {
                 if (film.jadwalList.get(j).tanggal.equals(tanggal)) {
@@ -42,8 +42,8 @@ public class FilterFilm {
                 }
             }
             
-            // Kalau genre DAN tanggal cocok, tambahkan
-            if (genreCocok && tanggalCocok) {
+            
+            if (genreCocok && tanggalCocok) {  //kalau cocok tambah
                 hasil.add(film);
             }
         }

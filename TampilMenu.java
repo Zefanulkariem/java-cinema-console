@@ -329,47 +329,58 @@ public class TampilMenu {
 
         do{
             System.out.println("");
-            System.out.println("Selamat Datang!");
-            System.out.println("========MENU========");
-            System.out.println("1. Lihat Film");
-            System.out.println("2. Cari Film");
-            System.out.println("3. Filter Film");
-            System.out.println("4. Keluar");
-            System.out.print("Pilih Menu: ");
-            
-            menu = in.nextInt();
+            System.out.println("╔══════════════════════════════════════════════════════════════╗");
+            System.out.println("║                         MENU USER                            ║");
+            System.out.println("╠══════════════════════════════════════════════════════════════╣");
+            System.out.println("║                                                              ║");
+            System.out.println("║                1.   Lihat Film                               ║");
+            System.out.println("║                2.   Cari Film                                ║");
+            System.out.println("║                3.   Filter Film                              ║");
+            System.out.println("║                4.   Beli Tiket                               ║");
+            System.out.println("║                5.   Keluar                                   ║");
+            System.out.println("║                                                              ║");
+            System.out.println("╚══════════════════════════════════════════════════════════════╝");
+            System.out.print  ("                   Pilih menu (1-5):");   menu = in.nextInt();
+            System.out.println("╚══════════════════════════════════════════════════════════════╝");
             in.nextLine();
             
             if (menu == 1) {
                 // if(film == null){}
                 if(filmList.isEmpty()){
-                    System.out.println("Tidak ada data.");
+                    System.out.println("║ Tidak ada data.");
+                    System.out.println("╚══════════════════════════════════════════════════════════════╝");
                 } else {
-                    System.out.println("=========DAFTAR FILM=========");
+                    System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                    System.out.println("║                         Daftar Film                          ║");
+                    System.out.println("╠══════════════════════════════════════════════════════════════╣");
                     for(int i = 0; i < filmList.size(); i++){
-                        System.out.println("\n Film ke-" + (i + 1) + ".");
+                        System.out.println("║ \n Film ke-" + (i + 1) + ".");
                         filmList.get(i).tampilInfo();
-                        System.out.println("---------------------------");
+                        System.out.println("╚══════════════════════════════════════════════════════════════╝");
                     }
                 }
             } else if (menu == 2) {
                 if (filmList.isEmpty()) {
-                    System.out.println("Belum ada data film untuk dicari.");
+                    System.out.println("║ Belum ada data film untuk dicari.");
                 } else {
-                    System.out.print("Masukkan judul film yang dicari: ");
+                    System.out.print("║ Masukkan judul film yang dicari: ");
                     String kataKunci = in.nextLine();
-                    
+
                     ArrayList<Film> hasil = SearchFilm.cariFilm(filmList, kataKunci);
-                    
+
                     if (hasil.isEmpty()) {
                         System.out.println("Film dengan judul '" + kataKunci + "' tidak ditemukan.");
                     } else {
-                        System.out.println("\nDitemukan " + hasil.size() + " film:");
-                        System.out.println("========HASIL PENCARIAN========");
+                        System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                        System.out.println("║                    HASIL PENCARIAN                           ║");
+                        System.out.println("╠══════════════════════════════════════════════════════════════╣");
+                        System.out.println("║ Ditemukan " + hasil.size() + " film:");
+                        System.out.println("╚══════════════════════════════════════════════════════════════╝");
                         for (int i = 0; i < hasil.size(); i++) {
-                            System.out.println("\nFilm ke-" + (i + 1) + ".");
+                            System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                            System.out.println("║ Film ke-" + (i + 1) + ".");
                             hasil.get(i).tampilInfo();
-                            System.out.println("---------------------------");
+                            System.out.println("╚══════════════════════════════════════════════════════════════╝");
                         }
                     }
                 }
@@ -377,46 +388,144 @@ public class TampilMenu {
                 if (filmList.isEmpty()) {
                     System.out.println("Belum ada data film untuk difilter.");
                 } else {
-                    System.out.println("\n========FILTER FILM========");
-                    System.out.println("1. Filter berdasarkan Tanggal dan Genre");
-                    System.out.println("2. Kembali");
-                    System.out.print("Pilih filter: ");
-                    
-                    int pilihFilter = in.nextInt();
+                    System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                    System.out.println("║                      FILTER FILM                             ║");
+                    System.out.println("╠══════════════════════════════════════════════════════════════╣");
+                    System.out.println("║                1. Filter berdasarkan Tanggal dan Genre       ║");
+                    System.out.println("║                2. Kembali                                    ║");
+                    System.out.println("╚══════════════════════════════════════════════════════════════╝");
+                    System.out.print  ("                   Pilih filter (1-2):");   int pilihFilter = in.nextInt();
+                    System.out.println("╚══════════════════════════════════════════════════════════════╝");
                     in.nextLine();
-                    
+
                     if (pilihFilter == 1) {
 
-                        System.out.print("Masukkan tanggal (DD-MM-YYYY): ");
+                        System.out.print("║ Masukkan tanggal (DD-MM-YYYY): ");
                         String tanggal = in.nextLine();
-                        
-                        System.out.print("Masukkan genre: ");
+
+                        System.out.print("║ Masukkan genre: ");
                         String genre = in.nextLine();
-                        
+
                         ArrayList<Film> hasil = FilterFilm.filterByTanggalDanGenre(filmList, tanggal, genre);
-                        
+
                         if (hasil.isEmpty()) {
-                            System.out.println("Tidak ada film genre " + genre + " yang tayang pada " + tanggal);
+                            System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                            System.out.println("║ Tidak ada film genre " + genre + " yang tayang pada " + tanggal);
+                            System.out.println("╚══════════════════════════════════════════════════════════════╝");
                         } else {
-                            System.out.println("\nFilm genre " + genre + " yang tayang pada " + tanggal + ":");
-                            System.out.println("========HASIL FILTER========");
+                            System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                            System.out.println("║ Film genre " + genre + " yang tayang pada " + tanggal + ":");
+                            System.out.println("╠══════════════════════════════════════════════════════════════╣");
+                            System.out.println("║                    HASIL FILTER                              ║");
+                            System.out.println("╚══════════════════════════════════════════════════════════════╝");
                             for (int i = 0; i < hasil.size(); i++) {
-                                System.out.println("\nFilm ke-" + (i + 1) + ".");
+                                System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                                System.out.println("║ Film ke-" + (i + 1) + ".");
                                 hasil.get(i).tampilInfo();
-                                System.out.println("---------------------------");
+                                System.out.println("╚══════════════════════════════════════════════════════════════╝");
                             }
                         }
-                        
+
                     } else if (pilihFilter == 2) {
-                        System.out.println("Kembali ke menu utama...");
+                        System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                        System.out.println("║                Kembali ke menu utama...                      ║");
+                        System.out.println("╚══════════════════════════════════════════════════════════════╝");
                     } else {
-                        System.out.println("Pilihan tidak valid!");
+                        System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                        System.out.println("║                   Pilihan tidak valid!                        ║");
+                        System.out.println("╚══════════════════════════════════════════════════════════════╝");
                     }
                 }
-                
-            } else if (menu > 4){
-                System.out.println("Harap isi dengan benar!");
+
+            } else if (menu == 4) {
+                if (filmList.isEmpty()) {
+                    System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                    System.out.println("║            Belum ada data film untuk dibeli tiket.           ║");
+                    System.out.println("╚══════════════════════════════════════════════════════════════╝");
+                } else {
+                    System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                    System.out.println("║                      BELI TIKET                              ║");
+                    System.out.println("╠══════════════════════════════════════════════════════════════╣");
+                    for(int i = 0; i < filmList.size(); i++){
+                        System.out.println("║ " + (i + 1) + ". " + filmList.get(i).judul);
+                    }
+                    System.out.println("╚══════════════════════════════════════════════════════════════╝");
+                    System.out.print("║ Pilih nomor film: ");
+                    int pilihFilm = in.nextInt();
+                    System.out.println("╚══════════════════════════════════════════════════════════════╝");
+                    in.nextLine();
+
+                    if(pilihFilm < 1 || pilihFilm > filmList.size()){
+                        System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                        System.out.println("║                Nomor film tidak valid!                       ║");
+                        System.out.println("╚══════════════════════════════════════════════════════════════╝");
+                    } else {
+                        Film filmDipilih = filmList.get(pilihFilm - 1);
+                        if(filmDipilih.jadwalList.isEmpty()){
+                            System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                            System.out.println("║             Belum ada jadwal untuk film ini.                 ║");
+                            System.out.println("╚══════════════════════════════════════════════════════════════╝");
+                        } else {
+                            System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                            System.out.println("║                     JADWAL TAYANG                            ║");
+                            System.out.println("╠══════════════════════════════════════════════════════════════╣");
+                            for(int i = 0; i < filmDipilih.jadwalList.size(); i++){
+                                System.out.println("║ " + (i + 1) + ". ");
+                                filmDipilih.jadwalList.get(i).tampilInfo();
+                                System.out.println("╚══════════════════════════════════════════════════════════════╝");
+                            }
+                            System.out.print("║ Pilih nomor jadwal: ");
+                            int pilihJadwal = in.nextInt();
+                            System.out.println("╚══════════════════════════════════════════════════════════════╝");
+                            in.nextLine();
+
+                            if(pilihJadwal < 1 || pilihJadwal > filmDipilih.jadwalList.size()){
+                                System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                                System.out.println("║               Nomor jadwal tidak valid!                      ║");
+                                System.out.println("╚══════════════════════════════════════════════════════════════╝");
+                            } else {
+                                Jadwal jadwalDipilih = filmDipilih.jadwalList.get(pilihJadwal - 1);
+                                System.out.print("║ Masukkan jumlah tiket: ");
+                                int jumlahTiket = in.nextInt();
+                                System.out.println("╚══════════════════════════════════════════════════════════════╝");
+                                in.nextLine();
+
+                                if(jumlahTiket <= 0 || jumlahTiket > jadwalDipilih.availableSeats){
+                                    System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                                    System.out.println("║        Jumlah tiket tidak valid atau kursi tidak cukup!      ║");
+                                    System.out.println("╚══════════════════════════════════════════════════════════════╝");
+                                } else {
+                                    // Kurangi kursi
+                                    jadwalDipilih.availableSeats -= jumlahTiket;
+
+                                    // Hitung total harga
+                                    double hargaPerTiket = Double.parseDouble(jadwalDipilih.harga.replace(".", "").replace(",", ""));
+                                    double totalHarga = hargaPerTiket * jumlahTiket;
+
+                                    System.out.println("╔══════════════════════════════════════════════════════════════╗");
+                                    System.out.println("║                    DETAIL PESANAN                            ║");
+                                    System.out.println("╠══════════════════════════════════════════════════════════════╣");
+                                    System.out.println("║ Film: " + filmDipilih.judul);
+                                    System.out.println("║ Genre: " + filmDipilih.genre);
+                                    System.out.println("║ Durasi: " + filmDipilih.durasi + " menit");
+                                    System.out.println("║ Rating: " + filmDipilih.rating);
+                                    System.out.println("║ Tanggal: " + jadwalDipilih.tanggal);
+                                    System.out.println("║ Jam: " + jadwalDipilih.jam);
+                                    System.out.println("║ Studio: " + jadwalDipilih.studio);
+                                    System.out.println("║ Jumlah Tiket: " + jumlahTiket);
+                                    System.out.println("║ Total Harga: Rp " + String.format("%,.0f", totalHarga));
+                                    System.out.println("╠══════════════════════════════════════════════════════════════╣");
+                                    System.out.println("║               Tiket berhasil dibeli!                         ║");
+                                    System.out.println("╚══════════════════════════════════════════════════════════════╝");
+                                }
+                            }
+                        }
+                    }
+                }
+            }else if (menu > 5) {
+                System.out.println("║ Harap isi dengan benar!");
             }
-        }while(menu != 4);
+                
+        }while(menu != 5);
     }
 }

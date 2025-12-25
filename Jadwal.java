@@ -6,6 +6,13 @@ public class Jadwal {
     String jam;
     String studio;
     String harga;
+    int totalSeats;
+    int availableSeats;
+
+    public Jadwal() {
+        totalSeats = 50; // Default total seats
+        availableSeats = totalSeats;
+    }
 
     public void tampilInfo(){
         System.out.println("║ Tanggal: " + tanggal);
@@ -13,5 +20,6 @@ public class Jadwal {
         System.out.println("║ Jam: " + jam);
         System.out.println("║ Studio: " + studio);
         System.out.println("║ Harga: " + harga);
+        System.out.println("║ Kursi Tersedia: " + availableSeats + "/" + totalSeats);
     }
 }
